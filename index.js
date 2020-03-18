@@ -1,6 +1,11 @@
 const server = require('./server');
-const {PORT} = require('./config');
+const {PORT, MONGO_URI} = require('./config');
+const mongoose = require('mongoose');
 
-server.listen(PORT, () => {
-    console.log(`codingApp listening on port ${PORT}`);
-});
+mongoose.connect(MONGO_URI, {useNewUrlParser: true})
+.then( () => {
+    server.listen(PORT, () => {
+        console.log(`codingApp listening on port ${PORT}`);
+    });
+})
+.catch(console.log);
