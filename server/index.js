@@ -32,12 +32,14 @@ server.get("/api/technology/:id", async (req,res) => {
 
 server.get("/api/technology/search/:name", async (req,res) => {
     const { name } = req.params;
-    let technology = await Technology.find({
+    let technologies = await Technology.find({
         name: {$regex: new RegExp(name, "i")  }
     });
-    technology.logo = `${req.protocol}://${req.headers.host}/img/${technology.logo}`;
-
-    return res.send({error: false, data: technology});
+    technologies = technologies.map( (technology) => {
+        technology.logo = `${req.protocol}://${req.headers.host}/img/${technology.logo}`;
+        return technology;
+    });
+    return res.send({error: false, data: technologies});
 });
 
 module.exports = server;
