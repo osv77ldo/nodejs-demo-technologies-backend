@@ -9,6 +9,7 @@ To get the Node server running locally:
 - `npm install` to install all required dependencies
 - create a free acount on mongo DB <https://www.mongodb.com/download-center>
 - create locally the `.env`  file and set the `PORT` and  `MONGO_URI`
+- run the db seeders with `npm run seed`
 - `npm run dev` to start the local server
 
 ## Application Structure
